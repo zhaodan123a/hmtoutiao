@@ -14,8 +14,7 @@
           <el-button style="float:right">发送验证码</el-button>
         </el-form-item>
         <el-form-item>
-          <el-checkbox  name="type" v-model="checked"></el-checkbox>
-          我已阅读并同意
+          <el-checkbox  name="type" v-model="checked"></el-checkbox>我已阅读并同意
           <el-link type="primary" :underline="false">用户协议</el-link>和
           <el-link type="primary" :underline="false">隐私条款</el-link>
         </el-form-item>
@@ -54,6 +53,9 @@ export default {
       display: block;
       width: 200px;
       margin: 0 auto 30px;
+    }
+    .el-checkbox{
+        margin-right: 10px;
     }
   }
 }
