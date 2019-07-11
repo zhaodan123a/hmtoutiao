@@ -7,13 +7,18 @@ import login from '../pages/login'
 
 // 引入后台首页
 import Home from '../pages/home'
+import Welcome from '../pages/welcom'
 
 Vue.use(VueRouter)
 
 const router = new VueRouter({
   routes: [
     { name: 'login', path: '/login', component: login },
-    { name: 'home', path: '/', component: Home }
+    { name: 'home', path: '/', component: Home ,
+    children:[
+      {name:'welcom',path:'/',component:Welcome}
+    ]  
+  }
   ]
 })
 export default router
