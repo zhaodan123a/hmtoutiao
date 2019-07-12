@@ -67,13 +67,14 @@ export default {
           // 校验成功
           // console.log('aaa')
           // 发送请求
-          this.$http.post('http://ttapi.research.itcast.cn/mp/v1_0/authorizations',this.loginForm)
-            .then((res)=>{
+          this.$http.post('http://ttapi.research.itcast.cn/mp/v1_0/authorizations', this.loginForm)
+            .then((res) => {
               // 请求成功
+              // console.log(res);
               this.$router.push('/')
-            }).catch(()=>{
+            }).catch(() => {
               // 错误提示
-              this.$message.error('用户名或密码错误');
+              this.$message.error('用户名或密码错误')
             })
         }
       })
