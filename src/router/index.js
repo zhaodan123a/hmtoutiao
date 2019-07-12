@@ -21,7 +21,7 @@ const router = new VueRouter({
     component: login
   },
   {
-    name: 'home',
+
     path: '/',
     component: Home,
     children: [{
@@ -34,4 +34,29 @@ const router = new VueRouter({
   { name: 'NotFound', path: '*', component: NotFound }
   ]
 })
+// 登录拦截,没有登录将会强制跳转到登录页
+// 使用vue-router中的导航守卫（前置）
+router.beforeEach((to, from, next) => {
+  // to表示即将进入那个路由，from表示从哪个路由离开的，next表示执行的操作
+  // 简写：
+  // 获取token
+  const user = window.sessionStorage.getItem('hm')
+  // 如果不在登录页且没有token，说明没有登录，强制跳到登录页
+  if (to.path !== '/login' && !user) { return next('/login') }
+  next() // 相当于中间件，如果没有将会停在这里出不去
+
+  // 复杂写法：
+  // 如果在登录页，直接进行下一步操作，放行不拦截
+  // if (to.path === '/login') {
+  //   return next()
+  // }
+  // const user = window.sessionStorage.getItem('hm')
+  // // 如果有token说明已经登录，不拦截。否则强制跳到登录页
+  // if (user) {
+  //   next()
+  // } else {
+  //   next('/login')
+  // }
+})
+
 export default router

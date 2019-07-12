@@ -55,15 +55,17 @@
         <i class="el-icon-s-fold" @click="changeMenu"></i>
         <span class="text">江苏传智播客教育科技有限公司</span>
         <div style="float:right">
-          <img src="../../assets/images/avatar.jpg" alt />
+
           <el-dropdown>
             <span class="el-dropdown-link">
+               <img src="../../assets/images/avatar.jpg" alt />
               <b>黑马小哥</b>
               <i class="el-icon-arrow-down el-icon--right"></i>
             </span>
             <el-dropdown-menu slot="dropdown">
-              <el-dropdown-item>个人设置</el-dropdown-item>
-              <el-dropdown-item>退出登录</el-dropdown-item>
+
+              <el-dropdown-item ><i class="el-icon-setting"></i>个人设置</el-dropdown-item>
+              <el-dropdown-item > <i class='el-icon-unlock'></i> 退出登录</el-dropdown-item>
             </el-dropdown-menu>
           </el-dropdown>
         </div>

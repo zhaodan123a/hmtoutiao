@@ -71,6 +71,11 @@ export default {
             .then((res) => {
               // 请求成功
               // console.log(res);
+              // 保存token，便于后续的访问，不登录不能访问
+              // console.log(res.data)    // 输出数据
+              // JSON.stringify() 表示将对象转换成json字符串形式
+              window.sessionStorage.setItem('hm', JSON.stringify(res.data.data))
+              // 此时可以在控制台的Application中查看token
               this.$router.push('/')
             }).catch(() => {
               // 错误提示
