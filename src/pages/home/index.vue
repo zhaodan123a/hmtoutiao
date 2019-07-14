@@ -8,7 +8,7 @@
            <!-- :collapse='isCollapse'表示折叠/展开，true默认折叠，false默认展开 -->
            <!-- :collapse-transition表示是否开启折叠动画，false表示不开启 -->
         <el-menu
-          default-active="/"
+          :default-active="$route.path"
           background-color="#002233"
           text-color="#fff"
           style="border-right:none"

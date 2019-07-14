@@ -8,6 +8,7 @@ import login from '../pages/login'
 // 引入后台首页
 import Home from '../pages/home'
 import Welcome from '../pages/welcom'
+import Article from '../pages/article'
 
 // 引入404页面
 import NotFound from '../pages/404'
@@ -28,7 +29,9 @@ const router = new VueRouter({
       name: 'welcom',
       path: '/',
       component: Welcome
-    }]
+    },
+    { name: 'article', path: '/article', component: Article }
+    ]
   },
   // 404页面（放到路由规则的最后），当出现没有匹配的路由时，将会跳转到404页面
   { name: 'NotFound', path: '*', component: NotFound }
