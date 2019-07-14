@@ -49,12 +49,31 @@
       </el-form>
     </el-card>
     <!-- 第二个卡片 -->
-    <el-card></el-card>
+    <el-card>
+        <!-- 此处使用插槽进行测试插槽 -->
+        <!-- 默认插槽，新内容将会覆盖备用内容 -->
+        <!-- <chacao >新内容</chacao> -->
+
+        <!-- 具名插槽 -->
+            <!-- 只会插到名字叫cc的插槽内 -->
+        <!-- <chacao > <template slot="cc">新内容</template>  </chacao> -->
+
+        <!-- 作用域插槽 -->
+        <!-- 使用chacao组件中的数据 -->
+        <!-- scope后面的数据是插槽组件中的自定义属性名 -->
+        <chacao> <template slot="cc" slot-scope='scope'> {{ scope.abc }} </template> </chacao>
+    </el-card>
   </div>
 </template>
 
 <script>
+// 引入插槽的组件
+import chacao from '../../components/chacao.vue'
 export default {
+  // 局部注册
+  components: {
+    chacao
+  },
   data () {
     return {
       articleForm: {
