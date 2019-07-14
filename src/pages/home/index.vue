@@ -88,6 +88,7 @@ export default {
     }
   },
   created () {
+    // 获取sessionStorage中的信息，并赋值给data中的数据
     const user = window.sessionStorage.getItem('hm')
     this.name = JSON.parse(user).name
     this.photo = JSON.parse(user).photo
