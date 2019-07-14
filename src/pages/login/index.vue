@@ -62,25 +62,34 @@ export default {
   methods: {
     // 整体校验，value返回的是布尔值
     login () {
-      this.$refs.loginForm.validate(valid => {
+      this.$refs.loginForm.validate(async valid => {
         if (valid) {
           // 校验成功
           // console.log('aaa')
           // 发送请求
-          this.$http.post('http://ttapi.research.itcast.cn/mp/v1_0/authorizations', this.loginForm)
-            .then((res) => {
-              // 请求成功
-              // console.log(res);
-              // 保存token，便于后续的访问，不登录不能访问
-              // console.log(res.data)    // 输出数据
-              // JSON.stringify() 表示将对象转换成json字符串形式
-              window.sessionStorage.setItem('hm', JSON.stringify(res.data.data))
-              // 此时可以在控制台的Application中查看token
-              this.$router.push('/')
-            }).catch(() => {
-              // 错误提示
-              this.$message.error('用户名或密码错误')
-            })
+          // 使用async和await方式简化,使用try{}catch(err){}捕捉错误信息
+          try {
+            const res = await this.$http.post('authorizations', this.loginForm)
+            // 保存token
+            window.sessionStorage.setItem('hm', JSON.stringify(res.data.data))
+            this.$router.push('/')
+          } catch (err) {
+            this.$message.error('用户名或密码错误')
+          }
+          // this.$http.post('authorizations', this.loginForm)
+          //   .then((res) => {
+          //     // 请求成功
+          //     // console.log(res);
+          //     // 保存token，便于后续的访问，不登录不能访问
+          //     // console.log(res.data)    // 输出数据
+          //     // JSON.stringify() 表示将对象转换成json字符串形式
+          //     window.sessionStorage.setItem('hm', JSON.stringify(res.data.data))
+          //     // 此时可以在控制台的Application中查看token
+          //     this.$router.push('/')
+          //   }).catch(() => {
+          //     // 错误提示
+          //     this.$message.error('用户名或密码错误')
+          //   })
         }
       })
     }

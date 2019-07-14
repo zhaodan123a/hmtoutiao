@@ -58,14 +58,14 @@
 
           <el-dropdown>
             <span class="el-dropdown-link">
-               <img src="../../assets/images/avatar.jpg" alt />
-              <b>黑马小哥</b>
+               <img :src="photo" alt />
+              <b>{{ name }}</b>
               <i class="el-icon-arrow-down el-icon--right"></i>
             </span>
             <el-dropdown-menu slot="dropdown">
-
-              <el-dropdown-item ><i class="el-icon-setting"></i>个人设置</el-dropdown-item>
-              <el-dropdown-item > <i class='el-icon-unlock'></i> 退出登录</el-dropdown-item>
+              <!-- native表示触发原生事件，因为此处是组件标签不一定有@click这个用法 -->
+              <el-dropdown-item @click.native="setting()"><i class="el-icon-setting"></i>个人设置</el-dropdown-item>
+              <el-dropdown-item @click.native="go()"> <i class='el-icon-unlock'></i> 退出登录</el-dropdown-item>
             </el-dropdown-menu>
           </el-dropdown>
         </div>
@@ -82,12 +82,28 @@
 export default {
   data () {
     return {
-      isCollapse: false
+      isCollapse: false,
+      name: '',
+      photo: ''
     }
+  },
+  created () {
+    const user = window.sessionStorage.getItem('hm')
+    this.name = JSON.parse(user).name
+    this.photo = JSON.parse(user).photo
   },
   methods: {
     changeMenu () {
       this.isCollapse = !this.isCollapse
+    },
+    setting () {
+      // 跳到设置页面
+      this.$router.push('/setting')
+    },
+    go () {
+      // 删除保存的token
+      window.sessionStorage.removeItem('hm')
+      this.$router.push('/login')
     }
   }
 }
