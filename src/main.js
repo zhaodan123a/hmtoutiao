@@ -22,6 +22,10 @@ import router from '@/router'
 
 // 引入封装好的axios
 import axios from '@/api/axios.js'
+// 全局引入插槽
+import components from '@/components'
+
+Vue.use(components)
 
 Vue.prototype.$http = axios
 // 注册全局
