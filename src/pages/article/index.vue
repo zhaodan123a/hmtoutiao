@@ -186,8 +186,8 @@ export default {
     },
     // 时间触发,values是选定的时间数组
     changeDate (values) {
-      this.begin_pubdate = values[0]
-      this.end_pubdate = values[1]
+      this.articleForm.begin_pubdate = values[0]
+      this.articleForm.end_pubdate = values[1]
       // 因为得到的时间格式与文档中要求的格式不符，所以在标签中修改格式
       console.log(values)
     },
