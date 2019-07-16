@@ -1,5 +1,8 @@
 <template>
   <div id="contenier">
+    <!-- 在这里测试子传父 -->
+    <my-son @xx='fn'></my-son>
+    {{ textdata }}
     <!-- 第一个卡片 -->
     <el-card>
       <!-- 头部 -->
@@ -137,6 +140,8 @@ export default {
   //   },
   data () {
     return {
+      // 测试子传父
+      textdata: '',
       articleForm: {
         // 默认显示第几页
         page: 1,
@@ -163,6 +168,11 @@ export default {
     this.getArticles()
   },
   methods: {
+    // 这是测试子传父的
+    fn (data) {
+      console.log('fn')
+      this.textdata = data
+    },
     // 获取频道
     async getChannel () {
       // 解构赋值，因为数据放在res.data.data中所以使用结构赋值
@@ -226,10 +236,8 @@ export default {
           // 点击确认要做的操作
           // 发送删除请求
           await this.$http.delete(`articles/${id}`)
-          this.$message({
-            type: 'success',
-            message: '删除成功!'
-          })
+          this.getArticles()
+          this.$message.success('删除成功！')
         })
         .catch(() => {
           // 点击取消

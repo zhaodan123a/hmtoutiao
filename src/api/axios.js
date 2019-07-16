@@ -3,7 +3,7 @@
 import axios from 'axios'
 
 // 引入json-bigint包，处理axios自带JSON.parse转换（可能超出自达安全数）不精确问题
-import JsonBigint from 'json-bigint'
+import JSONBig from 'json-bigint'
 
 // 新建一个axios实例
 const instance = axios.create({
@@ -16,11 +16,11 @@ const instance = axios.create({
   //   }
 
   // 自己转换json字符串
-  transformRequest: [function (data, headers) {
-    // 可能会出现没有数据的情况，有数据再转换（例：可能此时没有传入id那么就不需要转换）
-    // 可能因为接口问题导致没有数据，没有数据就跳过这个处理
+  transformResponse: [(data) => {
+  // 可能会出现没有数据的情况，有数据再转换（例：可能此时没有传入id那么就不需要转换）
+  // 可能因为接口问题导致没有数据，没有数据就跳过这个处理
     if (data) {
-      return JsonBigint.parse(data)
+      return JSONBig.parse(data)
     }
     return data
   }]

@@ -41,8 +41,8 @@ export default {
     return {
       checked: true,
       loginForm: {
-        mobile: '',
-        code: ''
+        mobile: '18438626009',
+        code: '246810'
       },
       // 校验规则
       loginRules: {
