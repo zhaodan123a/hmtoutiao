@@ -1,8 +1,9 @@
 <template>
   <div id="contenier">
     <!-- 在这里测试子传父 -->
-    <my-son @xx='fn'></my-son>
-    {{ textdata }}
+    <!-- <my-son @xx='fn'></my-son>
+    {{ textdata }} -->
+
     <!-- 第一个卡片 -->
     <el-card>
       <!-- 头部 -->
@@ -20,16 +21,11 @@
             <el-radio :label="3">审核失败</el-radio>
           </el-radio-group>
         </el-form-item>
+
+        <!-- 频道 -->
         <el-form-item label="频道" size="small">
-          <el-select placeholder="所有频道" v-model="articleForm.channel_id">
-            <!-- 循环数组，得到动态数据 -->
-            <el-option
-              v-for="item in channelOption"
-              :key="item.id"
-              :label="item.name"
-              :value="item.id"
-            ></el-option>
-          </el-select>
+        <!-- 因为组件标签不一定支持v-model，所以可以看做是绑定了一个input事件和一个value属性 -->
+        <my-channels v-model="articleForm.channel_id"></my-channels>
         </el-form-item>
         <el-form-item label="时间" size="small">
           <!-- 日期选择器 -->
@@ -141,7 +137,8 @@ export default {
   data () {
     return {
       // 测试子传父
-      textdata: '',
+      // textdata: '',
+
       articleForm: {
         // 默认显示第几页
         page: 1,
@@ -149,11 +146,12 @@ export default {
         per_pag: 10,
         // null表示不给后台发数据，''表示给后台发一个空字符
         status: null,
+        // 频道id
         channel_id: null,
         begin_pubdate: null,
         end_pubdate: null
       },
-      channelOption: [],
+
       Stime: [],
       // 表格数据
       tableData: [],
@@ -163,26 +161,17 @@ export default {
   },
   created () {
     // 获取频道
-    this.getChannel()
+    // this.getChannel()
     // 获取文章列表
     this.getArticles()
   },
   methods: {
     // 这是测试子传父的
-    fn (data) {
-      console.log('fn')
-      this.textdata = data
-    },
-    // 获取频道
-    async getChannel () {
-      // 解构赋值，因为数据放在res.data.data中所以使用结构赋值
-      const {
-        data: { data }
-      } = await this.$http.get('channels')
-      // console.log(res)
-      // 将数据放入数组中
-      this.channelOption = data.channels
-    },
+    // fn (data) {
+    //   console.log('fn')
+    //   this.textdata = data
+    // },
+
     // 文章表格渲染
     async getArticles () {
       // 解构赋值，得到数据
