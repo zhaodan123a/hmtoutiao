@@ -32,7 +32,7 @@ export default {
       this.channelOption = data.channels
     },
     // 改变时自响度传值
-    changechannel () {
+    changechannel (value) {
       // 子传父（父组件根据子组件传回的数据进行文章列表的改变）
       this.$emit('input', value)
     }
