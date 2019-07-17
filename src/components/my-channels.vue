@@ -31,10 +31,10 @@ export default {
       // 将数据放入数组中
       this.channelOption = data.channels
     },
-    // 改变时自响度传值
-    changechannel (value) {
+    // 改变时子向父传值，change事件中会自己带一个改变后的数据，将其传到父组件中
+    changechannel (val) {
       // 子传父（父组件根据子组件传回的数据进行文章列表的改变）
-      this.$emit('input', value)
+      this.$emit('input', val)
     }
   }
 }
