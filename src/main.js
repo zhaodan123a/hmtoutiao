@@ -24,6 +24,8 @@ import router from '@/router'
 import axios from '@/api/axios.js'
 // 全局引入插槽
 import components from '@/components'
+// 引入（素材管理页面的上传组件的）全局样式
+import '@/style/index.less'
 
 Vue.use(components)
 
