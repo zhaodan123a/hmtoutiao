@@ -79,6 +79,8 @@
 </template>
 
 <script>
+// 解决非父子传值
+import eventBus from '../../components/eventBus.js'
 export default {
   data () {
     return {
@@ -92,6 +94,14 @@ export default {
     const user = window.sessionStorage.getItem('hm')
     this.name = JSON.parse(user).name
     this.photo = JSON.parse(user).photo
+    // 将修改后的用户名同步至此
+    eventBus.$on('updateHeaderName', (name) => {
+      this.name = name
+    })
+    // 同步修改后的头像
+    eventBus.$on('getHeaderimage', (image) => {
+      this.photo = image
+    })
   },
   methods: {
     changeMenu () {
