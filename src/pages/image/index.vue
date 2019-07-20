@@ -1,5 +1,6 @@
 <template>
-  <div id="contennier">
+<!-- loading表示加载效果 -->
+  <div id="contennier"  v-loading="loading">
     <el-card>
       <!-- 头部 -->
       <div slot="header">
@@ -90,7 +91,9 @@ export default {
       headers: {
         Authorization:
           'Bearer ' + JSON.parse(window.sessionStorage.getItem('hm')).token
-      }
+      },
+      // 加载状态
+      loading: false
     }
   },
   created () {
@@ -99,6 +102,8 @@ export default {
   methods: {
     // 获取素材
     async getImage () {
+      // 加载状态开启
+      this.loading = true
       // 解构赋值
       const {
         data: { data }
@@ -108,6 +113,8 @@ export default {
       this.images = data.results
       // 获取总条数
       this.total = data.total_count
+      // 完成加载状态
+      this.loading = false
     },
     // 点击收藏按钮
     changebtn () {

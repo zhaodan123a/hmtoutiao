@@ -5,11 +5,12 @@ import VueRouter from 'vue-router'
 // 引入登录页面
 import login from '../pages/login'
 
-// 引入后台首页,欢迎页，内容管理，文章管理，素材管理
+// 引入后台首页,欢迎页，内容管理，文章管理，素材管理,发布文章
 import Home from '../pages/home'
 import Welcome from '../pages/welcom'
 import Article from '../pages/article'
 import Image from '../pages/image'
+import Publish from '../pages/publish'
 
 // 引入404页面
 import NotFound from '../pages/404'
@@ -32,7 +33,8 @@ const router = new VueRouter({
       component: Welcome
     },
     { name: 'article', path: '/article', component: Article },
-    { name: 'image', path: '/image', component: Image }
+    { name: 'image', path: '/image', component: Image },
+    { name: 'publish', path: '/publish', component: Publish }
     ]
   },
   // 404页面（放到路由规则的最后），当出现没有匹配的路由时，将会跳转到404页面

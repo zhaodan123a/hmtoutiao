@@ -4,10 +4,13 @@ import MyBread from './my-bread.vue'
 
 // 频道组件
 import MyChannels from './my-channels.vue'
+// 封面组件
+import MyPublish from './my-publish.vue'
 export default {
   install (Vue) {
     Vue.component(MyBread.name, MyBread)
     // Vue.component(MySon.name, MySon)
     Vue.component(MyChannels.name, MyChannels)
+    Vue.component(MyPublish.name, MyPublish)
   }
 }
