@@ -14,6 +14,9 @@ import Publish from '../pages/publish'
 import Comment from '../pages/comment'
 import Setting from '../pages/setting'
 
+// 引入测试非父子传值
+import Comab from '../components/comab.vue'
+
 // 引入404页面
 import NotFound from '../pages/404'
 
@@ -41,6 +44,9 @@ const router = new VueRouter({
     { name: 'setting', path: '/setting', component: Setting }
     ]
   },
+  // 测试非父子之间传值
+  { name: 'ab', path: '/ab', component: Comab },
+
   // 404页面（放到路由规则的最后），当出现没有匹配的路由时，将会跳转到404页面
   { name: 'NotFound', path: '*', component: NotFound }
   ]
